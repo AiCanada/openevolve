@@ -1,0 +1,81 @@
+# Project H.U.M.A.N. — evolve a transition-path interpolator that beats the
+# straight-line baseline on held-out ATLAS MD windows.
+#
+# GPU: evaluator scores with torch CUDA when available (HUMAN_EVOLVE_DEVICE=cuda).
+# LLM: Claude Code CLI (OAuth session; no OPENAI_API_KEY required).
+#
+# Run (from repo root):
+#   $env:HUMAN_EVOLVE_DEVICE="cuda"
+#   $env:PYTHONPATH="A:\Git Hub\openevolve"
+#   py -3 openevolve-run.py `
+#     examples/human_interp_path/initial_program.py `
+#     examples/human_interp_path/evaluator.py `
+#     --config examples/human_interp_path/config.yaml `
+#     --iterations 40 `
+#     --output examples/human_interp_path/openevolve_output_gpu
+
+max_iterations: 500
+checkpoint_interval: 10
+random_seed: 42
+# Full rewrites: prior run with diff_based=true produced almost only
+# "No valid diffs found" from Claude Code — full rewrite is more reliable here.
+diff_based_evolution: false
+max_code_length: 32000
+log_level: "INFO"
+
+llm:
+  provider: "claude_code"
+  models:
+    - name: "sonnet"
+      weight: 1.0
+      # Maxed token/budget headroom (full rewrites must emit COMPLETE programs).
+      max_tokens: 32000
+      timeout: 900
+      max_budget_usd: 15.0
+  temperature: 0.7
+  retries: 3
+  retry_delay: 5
+
+prompt:
+  system_message: >
+    You are an expert in structural bioinformatics, protein folding geometry, rigid-body
+    kinematics and numerical methods. You improve an algorithm that predicts INTERIOR
+    frames of a protein transition path given only Cα coordinates of the TWO ENDPOINT
+    conformations of a molecular-dynamics window.
+
+    MULTI-COMPONENT SCORING (mid-path frames 0.35–0.65) vs linear baseline, PAIRED per
+    window then median:
+      * translation — COM path error (Å)
+      * rotation    — Kabsch geodesic angle after COM centering (rad)
+      * folding     — Kabsch-aligned Cα RMSD = INTERNAL / fold residual (Å)  [PRIMARY]
+    total_score = translation_improvement + rotation_improvement + folding_improvement
+    combined_score weights folding heavily (fold is the main objective). Positive better.
+    win_rate / sign_test_p also reported for the folding term.
+
+    Concentrate on BETTERING PROTEIN FOLDING (internal geometry). MEASURED FACT: global
+    endpoint Kabsch rotation is tiny (median ~0.05 deg); pure global rigid motion does
+    not help. All real gain is multi-domain / local screws, bond restore ~3.8 Å, local
+    distance preservation, adaptive windows, mild timewarp — not global pose.
+
+    Constraints: only numpy/scipy/torch/math; no file or network I/O; no loading
+    datasets. Deterministic, finite, respect residue mask, return shape (Ti, L, 3).
+    Keep runtime under ~1s per window on 512 residues.
+
+    Return the COMPLETE improved program source (full rewrite mode).
+
+database:
+  population_size: 40
+  archive_size: 20
+  num_islands: 3
+  elite_selection_ratio: 0.25
+  exploitation_ratio: 0.7
+
+evaluator:
+  timeout: 600
+  cascade_evaluation: true
+  cascade_thresholds: [-1.0]
+  # Throughput is LLM-latency-bound, not evaluation-bound: a full 90-window GPU score
+  # takes ~1.5 s while each `claude -p` full rewrite takes ~10 min. At 2 workers only
+  # ~6 iterations/hour completed, so 500 would need ~3.5 days. More concurrent CLI
+  # calls is the only lever that shortens wall clock.
+  parallel_evaluations: 6
