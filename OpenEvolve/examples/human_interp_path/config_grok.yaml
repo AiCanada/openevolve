@@ -1,0 +1,69 @@
+# OpenEvolve — Grok/xAI only (NO Claude Code)
+#
+# Separate from the Claude-backed run under A:\Git Hub\openevolve\examples\...
+#
+# Requires:
+#   $env:XAI_API_KEY = "xai-..."   # from https://console.x.ai/
+#   $env:HUMAN_EVOLVE_DEVICE = "cuda"   # optional GPU scorer
+#
+# Run (from this OpenEvolve root):
+#   powershell -File run_human_interp_grok.ps1
+
+max_iterations: 500
+checkpoint_interval: 25
+random_seed: 42
+diff_based_evolution: false
+max_code_length: 32000
+log_level: "INFO"
+
+llm:
+  # OpenAI-compatible xAI API — never claude_code
+  api_base: "https://api.x.ai/v1"
+  api_key: ${XAI_API_KEY}
+  models:
+    - name: "grok-3"
+      weight: 0.7
+      max_tokens: 32000
+      timeout: 900
+    - name: "grok-3-mini"
+      weight: 0.3
+      max_tokens: 16000
+      timeout: 600
+  temperature: 0.7
+  retries: 3
+  retry_delay: 5
+
+prompt:
+  system_message: >
+    You are an expert in structural bioinformatics, protein folding geometry, rigid-body
+    kinematics and numerical methods. You improve an algorithm that predicts INTERIOR
+    frames of a protein transition path given only Cα coordinates of the TWO ENDPOINT
+    conformations of a molecular-dynamics window.
+
+    MULTI-COMPONENT SCORING (mid-path 0.35–0.65) vs linear baseline:
+      * translation — COM path error
+      * rotation    — Kabsch geodesic angle after COM centering
+      * folding     — Kabsch-aligned Cα RMSD (INTERNAL geometry)  [PRIMARY]
+    total_score = translation_imp + rotation_imp + folding_imp
+    combined_score heavily weights folding. Positive is better.
+
+    Concentrate on BETTERING PROTEIN FOLDING: multi-domain local screws, bond restore
+    ~3.8 Å, local distance preservation, adaptive windows. Avoid pure global rigid motion.
+
+    Constraints: only numpy/scipy/torch/math; no file or network I/O; no loading
+    datasets. Deterministic, finite, respect residue mask, return shape (Ti, L, 3).
+
+    Return the COMPLETE improved program source (full rewrite mode).
+
+database:
+  population_size: 40
+  archive_size: 20
+  num_islands: 3
+  elite_selection_ratio: 0.25
+  exploitation_ratio: 0.7
+
+evaluator:
+  timeout: 600
+  cascade_evaluation: true
+  cascade_thresholds: [-1.0]
+  parallel_evaluations: 2

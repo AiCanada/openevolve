@@ -1,0 +1,112 @@
+{
+  "source": "local_grok_evolve",
+  "best_name": "01_screw_residual.py",
+  "metrics_evolve": {
+    "combined_score": 3.6797808800059784e-08,
+    "improvement_pct": 3.6797808800059784e-06,
+    "win_rate": 0.5111111111111111,
+    "model_rmsd": 2.0531481161387455,
+    "baseline_rmsd": 2.0531481916901,
+    "valid": 1.0,
+    "n_windows": 90.0,
+    "device": "cuda",
+    "eval_seconds": 2.2656
+  },
+  "metrics_holdout": {
+    "combined_score": 1.076520675935555e-07,
+    "improvement_pct": 1.076520675935555e-05,
+    "win_rate": 0.4888888888888889,
+    "model_rmsd": 2.0363790863269022,
+    "baseline_rmsd": 2.036379305547345,
+    "valid": 1.0,
+    "n_windows": 90.0,
+    "device": "cuda",
+    "eval_seconds": 2.2658
+  },
+  "ranking": [
+    {
+      "name": "01_screw_residual.py",
+      "score_evolve": 3.6797808800059784e-08,
+      "score_holdout": 1.076520675935555e-07,
+      "model_rmsd_evolve": 2.0531481161387455,
+      "model_rmsd_holdout": 2.0363790863269022
+    },
+    {
+      "name": "00_linear.py",
+      "score_evolve": 0.0,
+      "score_holdout": 0.0,
+      "model_rmsd_evolve": 2.0531481916901,
+      "model_rmsd_holdout": 2.036379305547345
+    },
+    {
+      "name": "02_screw_ease_residual.py",
+      "score_evolve": -3.517971880473425e-07,
+      "score_holdout": -5.284964993856889e-06,
+      "model_rmsd_evolve": 2.0531489139818606,
+      "model_rmsd_holdout": 2.036390067740689
+    },
+    {
+      "name": "03_multiseg_screw.py",
+      "score_evolve": -0.0007971555717696255,
+      "score_holdout": -0.00034230425871895065,
+      "model_rmsd_evolve": 2.0547848702107743,
+      "model_rmsd_holdout": 2.037076366856001
+    },
+    {
+      "name": "07_ensemble_vote.py",
+      "score_evolve": -0.000856815558779811,
+      "score_holdout": -0.00013422310306587804,
+      "model_rmsd_evolve": 2.054907361005221,
+      "model_rmsd_holdout": 2.036652634696755
+    },
+    {
+      "name": "11_five_seg_adaptive.py",
+      "score_evolve": -0.0012642277821204306,
+      "score_holdout": -0.0007218336041727724,
+      "model_rmsd_evolve": 2.055743838674845,
+      "model_rmsd_holdout": 2.037849232560931
+    },
+    {
+      "name": "06_hinge_two_domain.py",
+      "score_evolve": -0.00778346008530173,
+      "score_holdout": -0.0029771972040366634,
+      "model_rmsd_evolve": 2.0691287886893295,
+      "model_rmsd_holdout": 2.042442008322179
+    },
+    {
+      "name": "04_screw_bondfix.py",
+      "score_evolve": -0.009694512440356684,
+      "score_holdout": -0.0031603101833181935,
+      "model_rmsd_evolve": 2.0730524623763356,
+      "model_rmsd_holdout": 2.0428148958037644
+    },
+    {
+      "name": "09_cubic_hermite_endpoints.py",
+      "score_evolve": 0.007786569305112123,
+      "score_holdout": -0.011873200102012094,
+      "model_rmsd_evolve": 2.0371612110018393,
+      "model_rmsd_holdout": 2.060557644525705
+    },
+    {
+      "name": "05_motion_weighted_blend.py",
+      "score_evolve": -0.0068067410122285565,
+      "score_holdout": -0.017317046050180585,
+      "model_rmsd_evolve": 2.06712343969066,
+      "model_rmsd_holdout": 2.071643379757143
+    },
+    {
+      "name": "10_anisotropic_residual.py",
+      "score_evolve": -0.04050148235752582,
+      "score_holdout": 0.005319191704572401,
+      "model_rmsd_evolve": 2.1363037369532227,
+      "model_rmsd_holdout": 2.0255474136379146
+    },
+    {
+      "name": "08_pca_mode_interp.py",
+      "score_evolve": -0.06175468403979423,
+      "score_holdout": 0.012324518780998384,
+      "model_rmsd_evolve": 2.179939709554797,
+      "model_rmsd_holdout": 2.01128191055089
+    }
+  ]
+}

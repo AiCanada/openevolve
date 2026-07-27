@@ -1,0 +1,94 @@
+# OpenEvolve — creative / exploration-heavy config (LLM path, optional).
+# Local default remains run_param_evolve_v7.py (no API).
+#
+# Use when XAI/Claude credits are available:
+#   py -3 openevolve-run.py `
+#     examples/human_interp_path/initial_program.py `
+#     examples/human_interp_path/evaluator.py `
+#     --config examples/human_interp_path/config_creative.yaml `
+#     --iterations 500 `
+#     --output examples/human_interp_path/openevolve_output_creative
+
+max_iterations: 500
+checkpoint_interval: 25
+random_seed: 42
+diff_based_evolution: false
+max_code_length: 32000
+log_level: "INFO"
+
+llm:
+  # Prefer xAI when key present. Set XAI_API_KEY before live runs.
+  # Leave api_key unset here so config loads without credentials (local default is v7).
+  api_base: "https://api.x.ai/v1"
+  models:
+    - name: "grok-3"
+      weight: 0.55
+      max_tokens: 32000
+      timeout: 900
+      temperature: 0.75
+    - name: "grok-3-mini"
+      weight: 0.45
+      max_tokens: 16000
+      timeout: 600
+      temperature: 0.95
+  temperature: 0.85
+  retries: 3
+  retry_delay: 5
+
+prompt:
+  system_message: >
+    You are an expert in structural bioinformatics, protein folding geometry, rigid-body
+    kinematics and numerical methods. You improve an algorithm that predicts INTERIOR
+    frames of a protein transition path given only Cα coordinates of the TWO ENDPOINT
+    conformations of a molecular-dynamics window.
+
+    MULTI-COMPONENT SCORING (mid-path 0.35–0.65) vs linear baseline:
+      * translation — COM path error
+      * rotation    — Kabsch geodesic angle after COM centering
+      * folding     — Kabsch-aligned Cα RMSD (INTERNAL geometry)  [PRIMARY]
+    total_score = translation_imp + rotation_imp + folding_imp
+    combined_score heavily weights folding. Positive is better.
+
+    CREATIVITY REQUIREMENT (structural novelty):
+    Do NOT only retune blend weights of the same recipe. Each rewrite must introduce a
+    NEW geometric idea or structural mode, for example:
+      - multi-domain / correlation-split local screws
+      - true Chasles screw (axis + pitch) vs residual-only screw
+      - multiscale local windows (small/mid/large half-windows with voting)
+      - per-residue adaptive half-window from displacement
+      - Cα–Cα ~3.8 Å bond restoration as a geometric post-step
+      - lightweight distance-matrix geodesic / MDS-style midpoints
+      - ensemble of two structurally different sub-algorithms
+      - mild residual timewarp or s-dependent mid-path reweighting
+    Reject pure coefficient tweaks of a prior champion unless combined with a structural change.
+
+    Concentrate on BETTERING PROTEIN FOLDING (internal geometry). Avoid pure global
+    rigid motion (Kabsch on the scorer already removes global pose for folding).
+
+    Constraints: only numpy/scipy/torch/math; no file or network I/O; no loading
+    datasets. Deterministic, finite, respect residue mask, return shape (Ti, L, 3).
+    Keep runtime under ~1s per window on 512 residues.
+
+    Return the COMPLETE improved program source (full rewrite mode).
+
+database:
+  # Exploration-heavy MAP-Elites / islands (vs greedy config.yaml)
+  population_size: 70
+  archive_size: 30
+  num_islands: 6
+  elite_selection_ratio: 0.15
+  exploitation_ratio: 0.40
+  # More migration = more creative mixing across niches
+  migration_interval: 40
+  migration_rate: 0.15
+  # Feature axes for MAP-Elites niches (score × diversity × complexity)
+  feature_dimensions:
+    - score
+    - diversity
+    - complexity
+
+evaluator:
+  timeout: 600
+  cascade_evaluation: true
+  cascade_thresholds: [-1.0]
+  parallel_evaluations: 2

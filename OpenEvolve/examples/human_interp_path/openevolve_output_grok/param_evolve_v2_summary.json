@@ -1,0 +1,47 @@
+{
+  "source": "param_evolve_v2",
+  "iterations": 500,
+  "device": "cuda",
+  "best": {
+    "iter": 409,
+    "balanced": 0.003562083281329959,
+    "evolve": 0.00826063840685809,
+    "holdout": -0.0010329135183599902,
+    "params": {
+      "nseg": 3,
+      "ease": 0,
+      "hermite": 0.0,
+      "w_lin": 0.0847661243835592,
+      "w_screw": 0.6906335824915404,
+      "w_multi": 0.0,
+      "w_local": 0.19980194562337955,
+      "w_hinge": 0.0,
+      "w_mode": 0.02479834750052152,
+      "bond_strength": 0.0,
+      "local_half": 13,
+      "hinge_smooth": 1,
+      "res_mid_boost": 0,
+      "mode_mid_boost": 0.10362661436307781
+    },
+    "metrics_evolve": {
+      "combined_score": 0.00826063840685809,
+      "improvement_pct": 0.826063840685809,
+      "win_rate": 0.5333333333333333,
+      "model_rmsd": 2.0361878768828534,
+      "baseline_rmsd": 2.0531481916901,
+      "valid": 1.0,
+      "n_windows": 90.0,
+      "device": "cuda"
+    },
+    "metrics_holdout": {
+      "combined_score": -0.0010329135183599902,
+      "improvement_pct": -0.10329135183599902,
+      "win_rate": 0.5888888888888889,
+      "model_rmsd": 2.0384827092605535,
+      "baseline_rmsd": 2.036379305547345,
+      "valid": 1.0,
+      "n_windows": 90.0,
+      "device": "cuda"
+    }
+  }
+}

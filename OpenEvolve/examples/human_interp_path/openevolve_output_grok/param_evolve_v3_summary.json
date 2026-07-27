@@ -1,0 +1,54 @@
+{
+  "source": "param_evolve_v3",
+  "iterations_logged": 390,
+  "n_scored": 253,
+  "status": "stopped_early_for_v4_algorithms",
+  "best": {
+    "iter": 313,
+    "balanced": 0.004006363230014687,
+    "evolve": 0.007861439419048932,
+    "holdout": 0.0001512870409804412,
+    "params": {
+      "nseg": 1,
+      "n_hinge": 3,
+      "n_modes": 1,
+      "ease": 0.0,
+      "hermite": 0.0,
+      "w_lin": 0.12235802160738919,
+      "w_screw": 0.6340208442536248,
+      "w_multi": 0.04120440968902329,
+      "w_local": 0.14520460836296076,
+      "w_hinge": 0.0,
+      "w_mode": 0.05721211608600193,
+      "bond_strength": 0,
+      "local_half": 13,
+      "soft_local": 0.0,
+      "res_mid_boost": 0,
+      "mode_mid_boost": 0.11294738655336786
+    }
+  },
+  "best_dual_min": {
+    "iter": 246,
+    "dual_min": 0.0004804123983841446,
+    "evolve": 0.004478890971654992,
+    "holdout": 0.0004804123983841446,
+    "params": {
+      "nseg": 1,
+      "n_hinge": 3,
+      "n_modes": 1,
+      "ease": 0.0,
+      "hermite": 0.0,
+      "w_lin": 0.10368185719840826,
+      "w_screw": 0.6827135261495542,
+      "w_multi": 0.07826183423147805,
+      "w_local": 0.07644359435046004,
+      "w_hinge": 0.0,
+      "w_mode": 0.058899188069074356,
+      "bond_strength": 0,
+      "local_half": 13,
+      "soft_local": 0.0,
+      "res_mid_boost": 0,
+      "mode_mid_boost": 0.11294738655336786
+    }
+  }
+}

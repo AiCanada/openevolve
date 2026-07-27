@@ -1,0 +1,73 @@
+{
+  "source": "param_evolve_v6_full_campaign",
+  "status": "complete_merged_orig_resume2_resume3",
+  "target_iterations": 1000,
+  "n_scored": 942,
+  "logs": [
+    "param_evolve_v6_log.jsonl",
+    "param_evolve_v6_resume2_log.jsonl",
+    "param_evolve_v6_resume3_log.jsonl"
+  ],
+  "best_dual": {
+    "iter": 92,
+    "log": "param_evolve_v6_resume3_log.jsonl",
+    "evolve": 0.006330674931332053,
+    "holdout": 0.006008501357211069,
+    "dual_min": 0.006008501357211069,
+    "balanced": 0.006169588144271561,
+    "params": {
+      "ease": 0.14197890234079205,
+      "hermite": 0.11370771013186731,
+      "w_lin": 0.05471703032739539,
+      "w_screw": 0.3889218955523097,
+      "w_local": 0.4489436579535165,
+      "w_dom": 0.04320915593297041,
+      "w_mode": 0.06420826023280803,
+      "local_half": 28,
+      "half_s": 2,
+      "half_l": 36,
+      "w_ms_small": 0.5809727782284834,
+      "w_ms_mid": 0.41902722177051643,
+      "w_ms_large": 0.0,
+      "n_dom": 1,
+      "min_dom": 8,
+      "use_chasles": 0.034091927148485454,
+      "timewarp": 0.0,
+      "s_gate": 0.001999113056379582,
+      "n_modes": 1,
+      "mode_mid_boost": 0.2895873764860074,
+      "bond_strength": 0.0
+    }
+  },
+  "best_balanced": {
+    "iter": 638,
+    "log": "param_evolve_v6_resume2_log.jsonl",
+    "evolve": 0.009536623325344237,
+    "holdout": 0.004268373744957131,
+    "dual_min": 0.004268373744957131,
+    "balanced": 0.006902498535150684,
+    "params": {
+      "ease": 0.14324942113249264,
+      "hermite": 0.059022665775652905,
+      "w_lin": 0.03369241154320932,
+      "w_screw": 0.49998862472710665,
+      "w_local": 0.4147807875459672,
+      "w_dom": 0.0,
+      "w_mode": 0.05153817618270478,
+      "local_half": 25,
+      "half_s": 2,
+      "half_l": 36,
+      "w_ms_small": 0.5299984862219004,
+      "w_ms_mid": 0.4280172482711877,
+      "w_ms_large": 0.04198426550591202,
+      "n_dom": 1,
+      "min_dom": 10,
+      "use_chasles": 0.006370318953902556,
+      "timewarp": 0.00629149604588762,
+      "s_gate": 0.0985531787266622,
+      "n_modes": 1,
+      "mode_mid_boost": 0.2679192325718954,
+      "bond_strength": 0.0
+    }
+  }
+}

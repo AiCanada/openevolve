@@ -1,0 +1,82 @@
+[
+  {
+    "name": "22_v4_dual_min.py",
+    "evolve_pct": 0.18354977690508978,
+    "holdout_pct": 0.16235971191566057,
+    "dual_min_pct": 0.16235971191566057,
+    "balanced": 0.0017295474441037517,
+    "rmsd_e": 2.049379642764722,
+    "rmsd_h": 2.033073045973348,
+    "error": null
+  },
+  {
+    "name": "27_pareto_mix.py",
+    "evolve_pct": 0.42146285132141914,
+    "holdout_pct": 0.03232665376896593,
+    "dual_min_pct": 0.03232665376896593,
+    "balanced": 0.0022689475254519254,
+    "rmsd_e": 2.0444949347795487,
+    "rmsd_h": 2.0357210122598177,
+    "error": null
+  },
+  {
+    "name": "23_v4_balanced_champ.py",
+    "evolve_pct": 0.786397398418115,
+    "holdout_pct": 0.014947273828858076,
+    "dual_min_pct": 0.014947273828858076,
+    "balanced": 0.004006723361234865,
+    "rmsd_e": 2.0370022877249805,
+    "rmsd_h": 2.0360749223563506,
+    "error": null
+  },
+  {
+    "name": "00_linear.py",
+    "evolve_pct": 0.0,
+    "holdout_pct": 0.0,
+    "dual_min_pct": 0.0,
+    "balanced": 0.0,
+    "rmsd_e": 2.0531481916901,
+    "rmsd_h": 2.036379305547345,
+    "error": null
+  },
+  {
+    "name": "26_flex_half_adaptive.py",
+    "evolve_pct": 0.3176692912499002,
+    "holdout_pct": -0.12060911016047449,
+    "dual_min_pct": -0.12060911016047449,
+    "balanced": 0.0005631690198854677,
+    "rmsd_e": 2.046625970381248,
+    "rmsd_h": 2.0388353645072574,
+    "error": null
+  },
+  {
+    "name": "24_agree_gate_local.py",
+    "evolve_pct": 0.044214008202680954,
+    "holdout_pct": -0.17052591717208188,
+    "dual_min_pct": -0.17052591717208188,
+    "balanced": -0.001228400254949291,
+    "rmsd_e": 2.052240412580213,
+    "rmsd_h": 2.039851860035232,
+    "error": null
+  },
+  {
+    "name": "28_res_dir_slerp.py",
+    "evolve_pct": -1.0192003945974193,
+    "holdout_pct": -0.4013504706786408,
+    "dual_min_pct": -1.0192003945974193,
+    "balanced": -0.008507480973755543,
+    "rmsd_e": 2.074073886161475,
+    "rmsd_h": 2.0445523234749614,
+    "error": null
+  },
+  {
+    "name": "25_anm_mode_morph.py",
+    "evolve_pct": 0.29212157433259334,
+    "holdout_pct": -1.0327143213331835,
+    "dual_min_pct": -1.0327143213331835,
+    "balanced": -0.007317463859669093,
+    "rmsd_e": 2.0471505028691537,
+    "rmsd_h": 2.0574092862723976,
+    "error": null
+  }
+]
