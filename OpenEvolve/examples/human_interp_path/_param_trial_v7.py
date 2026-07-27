@@ -1,6 +1,6 @@
 
 import numpy as np
-PARAMS = {'ease': 0.141303757733508, 'hermite': 0.11370771013186731, 'w_lin': 0.054882687144845406, 'w_screw': 0.3900993637567851, 'w_local': 0.4503028431495324, 'w_dom': 0.040312454024169296, 'w_mode': 0.06440265192366783, 'local_half': 28, 'half_s': 2, 'half_l': 38, 'w_ms_small': 0.5809727782284835, 'w_ms_mid': 0.41902722177051654, 'w_ms_large': 0.0, 'n_dom': 1, 'min_dom': 8, 'use_chasles': 0.05, 'timewarp': 0.0, 's_gate': 0.0, 'n_modes': 1, 'mode_mid_boost': 0.2895873764860074, 'bond_strength': 0.15, 'algo_mode': 1}
+PARAMS = {'ease': 0.15025106839013577, 'hermite': 0.11370771013186731, 'w_lin': 0.05461007778668368, 'w_screw': 0.3881616900985626, 'w_local': 0.4480661310744582, 'w_dom': 0.045079345361933754, 'w_mode': 0.0640827556773618, 'w_ms_small': 0.5944780734360332, 'w_ms_mid': 0.4055219265629669, 'w_ms_large': 0.0, 'use_chasles': 0.034091927148485454, 'timewarp': 0.0, 's_gate': 0.0007813990282099212, 'mode_mid_boost': 0.2956056785222733, 'bond_strength': 0.0, 'local_half': 28, 'half_s': 2, 'half_l': 37, 'n_dom': 2, 'min_dom': 8, 'n_modes': 1, 'algo_mode': 0}
 
 def inject_params(p):
     PARAMS.update(p)
